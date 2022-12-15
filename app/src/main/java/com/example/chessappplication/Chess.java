@@ -42,6 +42,10 @@ public class Chess {
         public int enpassantWhiteLocationY = 0, enpassantBlackLocationY = 0;
         public int castleRookX, castleRookY;
         public int castleDestinationX, castleDestinationY;
+        int lastMovedPieceX;
+        int lastMovedPieceY;
+        Piece lastMovedPiece;
+        Piece lastCaputredPiece;
 
         int counter = 0;
 
@@ -66,6 +70,8 @@ public class Chess {
     }
 
     public int whiteMove(int currentx, int currenty, int destinationx, int destinationy){
+        lastCaputredPiece = null;
+        lastMovedPiece = null;
         System.out.println();
         //get the white player's move
         System.out.print("White's move: ");
@@ -255,6 +261,8 @@ public class Chess {
         }
 
     public int blackMove(int currentx, int currenty, int destinationx, int destinationy){
+        lastCaputredPiece = null;
+        lastMovedPiece = null;
                 //get the white player's move
                 System.out.println();
                 System.out.print("Black's move: ");
@@ -770,6 +778,10 @@ public class Chess {
         int currentX = currentPiece.xPosition;
         int currentY = currentPiece.yPosition;
         Piece captured = board[x][y];
+        lastCaputredPiece = captured;
+        lastMovedPieceX = currentX;
+        lastMovedPieceY = currentY;
+        lastMovedPiece = currentPiece;
         if(captured != null){
             //removes the piece that is captured
             oppositePlayerPieces.remove(captured);
@@ -788,6 +800,8 @@ public class Chess {
                 board[currentX][currentY] = currentPiece;
                 currentPiece.setXPosition(currentX);
                 currentPiece.setYPosition(currentY);
+                lastCaputredPiece = null;
+                lastMovedPiece = null;
                 return false;
             }
             //if piece moving for first time then mark it as moved beofre
@@ -809,6 +823,8 @@ public class Chess {
                 board[currentX][currentY] = currentPiece;
                 currentPiece.setXPosition(currentX);
                 currentPiece.setYPosition(currentY);
+                lastCaputredPiece = null;
+                lastMovedPiece = null;
                 return false;
             }
             //if piece moving for first time then mark it as moved beofre
@@ -1083,12 +1099,32 @@ public class Chess {
     }
 
     public void undoMove(){
-        String getLastMove = history.get(history.size()-1);
-        history.remove(getLastMove);
-        int destinationX = Character.getNumericValue(getLastMove.charAt(0));
-        int destinationY = Character.getNumericValue(getLastMove.charAt(1));
-        int x = Character.getNumericValue(getLastMove.charAt(2));
-        int y = Character.getNumericValue(getLastMove.charAt(3));
+        if(lastMovedPiece == null){
+            return;
+        }
+        int currentX = lastMovedPiece.xPosition;
+        int currentY = lastMovedPiece.yPosition;
+        lastMovedPiece.setXPosition(lastMovedPieceX);
+        lastMovedPiece.setYPosition(lastMovedPieceY);
+        System.out.println("current x is " + currentX);
+        System.out.println("current y is " + currentY);
+        System.out.println("last x is " + lastMovedPieceX);
+        System.out.println("last y is " + lastMovedPieceY);
+        System.out.println("last moved piece " + lastMovedPiece.name);
+        board[lastMovedPieceX][lastMovedPieceY] = lastMovedPiece;
+        board[currentX][currentY] = null;
+
+        whiteTurn = !whiteTurn;
+        if(lastCaputredPiece != null){
+            if (lastCaputredPiece.isWhite){
+                whitePlayer.add(lastCaputredPiece);
+                board[currentX][currentY] = lastCaputredPiece;
+            }else{
+                blackPlayer.add(lastCaputredPiece);
+                board[currentX][currentY] = lastCaputredPiece;
+            }
+        }
+        printBoard(board);
 
     }
 

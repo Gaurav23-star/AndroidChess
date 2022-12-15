@@ -33,7 +33,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class playGameActivity extends AppCompatActivity implements View.OnClickListener {
+public class playGameActivity extends AppCompatActivity {
 
     EditText gameNameInput;
 
@@ -46,41 +46,8 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
     private static int differenceY;
     private ImageView lastClickedPiece = null;
     public ArrayList<String> gameHistory = new ArrayList<>();
-    private static final int[] setOfPieces = {
-            R.drawable.br,
-            R.drawable.bn,
-            R.drawable.bb,
-            R.drawable.bq,
-            R.drawable.bk,
-            R.drawable.bb,
-            R.drawable.bn,
-            R.drawable.br,
-            R.drawable.bp,
-            R.drawable.bp,
-            R.drawable.bp,
-            R.drawable.bp,
-            R.drawable.bp,
-            R.drawable.bp,
-            R.drawable.bp,
-            R.drawable.bp,
-            R.drawable.wp,
-            R.drawable.wp,
-            R.drawable.wp,
-            R.drawable.wp,
-            R.drawable.wp,
-            R.drawable.wp,
-            R.drawable.wp,
-            R.drawable.wp,
-            R.drawable.wr,
-            R.drawable.wn,
-            R.drawable.wb,
-            R.drawable.wq,
-            R.drawable.wk,
-            R.drawable.wb,
-            R.drawable.wn,
-            R.drawable.wr,
-    };
     Chess chessGame = new Chess();
+    ImageView lastCaputredImage;
 
 
     ImageView br;
@@ -130,6 +97,7 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
     Button drawButton;
     Button resignButton;
     TextView warningLable;
+    Button undoButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,6 +111,7 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
         drawButton = findViewById(R.id.drawButton);
         resignButton = findViewById(R.id.resignButton);
         warningLable = findViewById(R.id.warningLable);
+        undoButton = findViewById(R.id.undoButton);
         warningLable.setVisibility(View.INVISIBLE);
         br = findViewById(R.id.br);
         bb = findViewById(R.id.bb);
@@ -216,41 +185,6 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
                 wp8,
         };
 
-        br.setOnClickListener(this);
-        bb.setOnClickListener(this);
-        bk.setOnClickListener(this);
-        bq.setOnClickListener(this);
-        bn.setOnClickListener(this);
-        br1.setOnClickListener(this);
-        bn1.setOnClickListener(this);
-        bb1.setOnClickListener(this);
-        bp1.setOnClickListener(this);
-        bp2.setOnClickListener(this);
-        bp3.setOnClickListener(this);
-        bp4.setOnClickListener(this);
-        bp5.setOnClickListener(this);
-        bp6.setOnClickListener(this);
-        bp7.setOnClickListener(this);
-        bp8.setOnClickListener(this);
-
-
-        wr.setOnClickListener(this);
-        wb.setOnClickListener(this);
-        wk.setOnClickListener(this);
-        wq.setOnClickListener(this);
-        wn.setOnClickListener(this);
-        wr1.setOnClickListener(this);
-        wn1.setOnClickListener(this);
-        wb1.setOnClickListener(this);
-        wp1.setOnClickListener(this);
-        wp2.setOnClickListener(this);
-        wp3.setOnClickListener(this);
-        wp4.setOnClickListener(this);
-        wp5.setOnClickListener(this);
-        wp6.setOnClickListener(this);
-        wp7.setOnClickListener(this);
-        wp8.setOnClickListener(this);
-
         br.setOnTouchListener(onTouchListener);
         bb.setOnTouchListener(onTouchListener);
         bk.setOnTouchListener(onTouchListener);
@@ -296,13 +230,6 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
 
 
 
-        //View sample = findViewById(R.id.sampleBox);
-        //ImageView sampleImageDrop = findViewById(R.id.sampleImageDrop);
-
-        //wp2.setOnLongClickListener(longClickListener);
-        //wp2.setOnDragListener(onDragListener);
-        //sampleImageDrop.setOnDragListener(onDragListener);
-
         aiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,12 +239,12 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
                 int destinationX = Character.getNumericValue(randomMove.charAt(3));
                 int destinationY = Character.getNumericValue(randomMove.charAt(2));
                 int imgX, imgY, imgDesX, imgDesY;
-                Log.i("string to add is from black savex ", y+"");
-                Log.i("string to add is from black savey ", x+"");
+                //Log.i("string to add is from black savex ", y+"");
+                //Log.i("string to add is from black savey ", x+"");
                 imgX = x-1 % 8;
                 imgY = (8 - (y % 8))%8;
-                Log.i("string to add is from black savex ", imgX+"");
-                Log.i("string to add is from black savey ", imgY+"");
+                //Log.i("string to add is from black savex ", imgX+"");
+                //Log.i("string to add is from black savey ", imgY+"");
                 imgX = imgX * differenceX + startingX;
                 imgY = imgY * differenceY + startingY;
                 //imgY -=160;
@@ -326,20 +253,20 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
 
                 imgDesX = destinationX;
                 imgDesY = destinationY;
-                Log.i("string to add is from black savedesx ", imgDesX+"");
-                Log.i("string to add is from black savedesy ", imgDesY+"");
+                //Log.i("string to add is from black savedesx ", imgDesX+"");
+                //Log.i("string to add is from black savedesy ", imgDesY+"");
                 imgDesX = imgDesX-1 % 8;
                 imgDesY = (8 - (imgDesY % 8))%8;
-                Log.i("string to add is from black savedesx ", imgDesX+"");
-                Log.i("string to add is from black savedesy ", imgDesY+"");
+                //Log.i("string to add is from black savedesx ", imgDesX+"");
+                //Log.i("string to add is from black savedesy ", imgDesY+"");
                 imgDesX = imgDesX * differenceX + startingX;
                 imgDesY = imgDesY * differenceY + startingY;
                 //imgDesY -= 160;
                 imgDesY -= differenceY*2;
-                Log.i("string to add is from black savex ", imgX+"");
-                Log.i("string to add is from black savey ", imgY+"");
-                Log.i("string to add is from black savedesx ", imgDesX+"");
-                Log.i("string to add is from black savedesy ", imgDesY+"");
+                //Log.i("string to add is from black savex ", imgX+"");
+                //Log.i("string to add is from black savey ", imgY+"");
+                //Log.i("string to add is from black savedesx ", imgDesX+"");
+                //Log.i("string to add is from black savedesy ", imgDesY+"");
 
                 int savex = Math.abs((int)((imgX - startingX)/differenceX));
                 int savey = Math.abs((int)(((imgY+differenceY*2) - startingY)/differenceY));
@@ -347,6 +274,7 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
                 int desy = Math.abs((int)(((imgDesY+differenceY*2) - startingY)/differenceY));
 
                 if(whitesMove){
+                    lastCaputredImage = null;
                     int answer = chessGame.whiteMove(y, x, destinationY, destinationX);
 
                     Log.i("answer is ", answer +" ");
@@ -355,7 +283,7 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
                             castleRook(whitePieces);
                         }
                         String currentMove = savex + "" + savey + "" + desx + "" + desy;
-                        Log.i("string to add is from white", currentMove);
+                        //Log.i("string to add is from white", currentMove);
                         gameHistory.add(currentMove);
                         ImageView piece = getPieceAt(whitePieces, imgX, imgY);
                         piece.setX(imgDesX);
@@ -376,18 +304,19 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
                     }
 
                 }else if(!whitesMove){
+                    lastCaputredImage = null;
                     int answer = chessGame.blackMove(y, x, destinationY, destinationX);
                     Log.i("answer is ", answer +" ");
                     if(answer != -1){
                         if(answer == 2){
                             castleRook(blackPieces);
                         }
-                        Log.i("string to add is from black savex ", savex+"");
-                        Log.i("string to add is from black savey ", savey+"");
-                        Log.i("string to add is from black savedesx ", desx+"");
-                        Log.i("string to add is from black savedesy ", desy+"");
+                        //Log.i("string to add is from black savex ", savex+"");
+                        //Log.i("string to add is from black savey ", savey+"");
+                        //Log.i("string to add is from black savedesx ", desx+"");
+                        //Log.i("string to add is from black savedesy ", desy+"");
                         String currentMove = savex + "" + savey + "" + desx + "" + desy;
-                        Log.i("string to add is from black ", currentMove);
+                        //Log.i("string to add is from black ", currentMove);
                         gameHistory.add(currentMove);
                         ImageView piece = getPieceAt(blackPieces, imgX, imgY);
                         piece.setX(imgDesX);
@@ -428,6 +357,57 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(gameHistory.size() == 0){
+                    return;
+                }
+                if(lastCaputredImage != null){
+                    ImageView imageCaputred = lastCaputredImage;
+                    imageCaputred.setVisibility(View.VISIBLE);
+                }
+                String lastMove = gameHistory.get(gameHistory.size()-1);
+                int destinationX = Character.getNumericValue(lastMove.charAt(0));
+                int destinationY = Character.getNumericValue(lastMove.charAt(1));
+                int x = Character.getNumericValue(lastMove.charAt(2));
+                int y = Character.getNumericValue(lastMove.charAt(3));
+
+                x = x * differenceX + startingX;
+                y = y * differenceY + startingY;
+                //y -=160;
+                y -= differenceY*2;
+                Log.i("xy xy", x + " "+ y + " " + destinationX + " "+ destinationY);
+
+                destinationX = destinationX * differenceX + startingX;
+                destinationY = destinationY * differenceY + startingY;
+                //destinationY -= 160;
+                destinationY -= differenceY*2;
+                ImageView lastImageMoved;
+                if(!whitesMove){
+                    lastImageMoved = getPieceAt(whitePieces, x, y);
+                    lastImageMoved.setX(destinationX);
+                    lastImageMoved.setY(destinationY);
+                    whitesMove = true;
+                    turnLable.setText("White's Move");
+                    enableAll(whitePieces);
+                    disableAll(blackPieces);
+
+                }else {
+                    lastImageMoved = getPieceAt(blackPieces, x, y);
+                    lastImageMoved.setX(destinationX);
+                    lastImageMoved.setY(destinationY);
+                    whitesMove = false;
+                    turnLable.setText("Black's Move");
+                    enableAll(blackPieces);
+                    disableAll(whitePieces);
+                }
+                chessGame.undoMove();
+                gameHistory.remove(gameHistory.size()-1);
+
+            }
+        });
+
 
 
     }
@@ -455,79 +435,6 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
 
         }
     }
-
-
-    @Override
-    public void onClick(View v) {
-        if(lastClickedPiece != null){
-            lastClickedPiece.setBackground(null);
-        }
-        ImageView imageView = (ImageView) v;
-        imageView.setBackgroundColor(Color.DKGRAY);
-        int x, y;
-        int[] location = new int[2];
-        imageView.getLocationOnScreen(location);
-        x = (location[0] - startingX)/differenceX;
-        y = (location[1] - startingY)/differenceY;
-        x = x+1 %8;
-        y = 8 - (y % 8);
-        Log.i("X and Y coordinates are", x + " " +y);
-        Log.i("X and Y coordinates", imageView.getX() + " " +imageView.getBottom());
-        //int[] location = new int[2];
-        imageView.getLocationOnScreen(location);
-        Log.i("X and Y", location[0] + " " +location[1]);
-
-        lastClickedPiece = imageView;
-
-    }
-
-    View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
-        @Override
-        public boolean onLongClick(View v) {
-            if(lastClickedPiece != null){
-                lastClickedPiece.setBackground(null);
-            }
-            ImageView imageView = (ImageView)v;
-            imageView.setBackgroundColor(Color.DKGRAY);
-            ClipData data = ClipData.newPlainText("", "");
-            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-            v.startDrag(data, shadowBuilder,v,0);
-            return true;
-        }
-    };
-
-    View.OnDragListener onDragListener = new View.OnDragListener() {
-        @Override
-        public boolean onDrag(View v, DragEvent event) {
-            int dragEvent = event.getAction();
-            Log.i("DragEvent", "" + dragEvent);
-            int x, y;
-            x = ((int)event.getX() - startingX)/differenceX;
-            y = ((int)event.getY() - startingY)/differenceY;
-
-            switch (dragEvent){
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    v.setBackgroundColor(Color.BLUE);
-                    Log.i("DragEnterd", "Drag Entered");
-                    break;
-                case DragEvent.ACTION_DRAG_EXITED:
-                    Log.i("DragExited", "Drag Exited");
-                    break;
-                case DragEvent.ACTION_DROP:
-                    Log.i("DragDropped", "Drag Dropper");
-                    Log.i("drop x and y",   event.getX() + " " + event.getY());
-                    break;
-                case DragEvent.ACTION_DRAG_LOCATION:
-                    Log.i("x and y",   event.getX() + "" + event.getY());
-                    break;
-
-
-            }
-
-            return true;
-
-        }
-    };
 
 
     int currentX = 0, currentY = 0;
@@ -569,6 +476,7 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
                 //return 4 for checkmate
 
                 if(whitesMove){
+                    lastCaputredImage = null;
                     chessGame.getRandomMove();
                     disableAll(blackPieces);
 
@@ -621,6 +529,7 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
 
                 }
                 else if(!whitesMove){
+                    lastCaputredImage = null;
                     chessGame.getRandomMove();
                     disableAll(whitePieces);
 
@@ -699,7 +608,8 @@ public class playGameActivity extends AppCompatActivity implements View.OnClickL
 
         for(ImageView piece: pieces){
             if(piece.getX() == x && piece.getY() == y){
-                piece.setVisibility(View.GONE);
+                piece.setVisibility(View.INVISIBLE);
+                lastCaputredImage = piece;
                 return;
             }
         }
