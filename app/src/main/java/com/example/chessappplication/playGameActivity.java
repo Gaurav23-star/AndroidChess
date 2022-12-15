@@ -221,12 +221,8 @@ public class playGameActivity extends AppCompatActivity {
         wp8.setOnTouchListener(onTouchListener);
 
         ImageView chessBoard = findViewById(R.id.chessBoard);
-        Log.i("totalChild", constraintLayout.getChildCount() + " ");
+        //Log.i("totalChild", constraintLayout.getChildCount() + " ");
 
-        for(int i = 0; i < constraintLayout.getChildCount(); i++){
-            Log.i("child at " + i, constraintLayout.getChildAt(i) + " ");
-
-        }
 
 
 
@@ -239,12 +235,12 @@ public class playGameActivity extends AppCompatActivity {
                 int destinationX = Character.getNumericValue(randomMove.charAt(3));
                 int destinationY = Character.getNumericValue(randomMove.charAt(2));
                 int imgX, imgY, imgDesX, imgDesY;
-                //Log.i("string to add is from black savex ", y+"");
-                //Log.i("string to add is from black savey ", x+"");
+                ////Log.i("string to add is from black savex ", y+"");
+                ////Log.i("string to add is from black savey ", x+"");
                 imgX = x-1 % 8;
                 imgY = (8 - (y % 8))%8;
-                //Log.i("string to add is from black savex ", imgX+"");
-                //Log.i("string to add is from black savey ", imgY+"");
+                ////Log.i("string to add is from black savex ", imgX+"");
+                ////Log.i("string to add is from black savey ", imgY+"");
                 imgX = imgX * differenceX + startingX;
                 imgY = imgY * differenceY + startingY;
                 //imgY -=160;
@@ -253,20 +249,20 @@ public class playGameActivity extends AppCompatActivity {
 
                 imgDesX = destinationX;
                 imgDesY = destinationY;
-                //Log.i("string to add is from black savedesx ", imgDesX+"");
-                //Log.i("string to add is from black savedesy ", imgDesY+"");
+                ////Log.i("string to add is from black savedesx ", imgDesX+"");
+                ////Log.i("string to add is from black savedesy ", imgDesY+"");
                 imgDesX = imgDesX-1 % 8;
                 imgDesY = (8 - (imgDesY % 8))%8;
-                //Log.i("string to add is from black savedesx ", imgDesX+"");
-                //Log.i("string to add is from black savedesy ", imgDesY+"");
+                ////Log.i("string to add is from black savedesx ", imgDesX+"");
+                ////Log.i("string to add is from black savedesy ", imgDesY+"");
                 imgDesX = imgDesX * differenceX + startingX;
                 imgDesY = imgDesY * differenceY + startingY;
                 //imgDesY -= 160;
                 imgDesY -= differenceY*2;
-                //Log.i("string to add is from black savex ", imgX+"");
-                //Log.i("string to add is from black savey ", imgY+"");
-                //Log.i("string to add is from black savedesx ", imgDesX+"");
-                //Log.i("string to add is from black savedesy ", imgDesY+"");
+                ////Log.i("string to add is from black savex ", imgX+"");
+                ////Log.i("string to add is from black savey ", imgY+"");
+                ////Log.i("string to add is from black savedesx ", imgDesX+"");
+                ////Log.i("string to add is from black savedesy ", imgDesY+"");
 
                 int savex = Math.abs((int)((imgX - startingX)/differenceX));
                 int savey = Math.abs((int)(((imgY+differenceY*2) - startingY)/differenceY));
@@ -277,13 +273,13 @@ public class playGameActivity extends AppCompatActivity {
                     lastCaputredImage = null;
                     int answer = chessGame.whiteMove(y, x, destinationY, destinationX);
 
-                    Log.i("answer is ", answer +" ");
+                    //Log.i("answer is ", answer +" ");
                     if(answer != -1){
                         if(answer == 2){
                             castleRook(whitePieces);
                         }
                         String currentMove = savex + "" + savey + "" + desx + "" + desy;
-                        //Log.i("string to add is from white", currentMove);
+                        ////Log.i("string to add is from white", currentMove);
                         gameHistory.add(currentMove);
                         ImageView piece = getPieceAt(whitePieces, imgX, imgY);
                         piece.setX(imgDesX);
@@ -306,17 +302,17 @@ public class playGameActivity extends AppCompatActivity {
                 }else if(!whitesMove){
                     lastCaputredImage = null;
                     int answer = chessGame.blackMove(y, x, destinationY, destinationX);
-                    Log.i("answer is ", answer +" ");
+                    //Log.i("answer is ", answer +" ");
                     if(answer != -1){
                         if(answer == 2){
                             castleRook(blackPieces);
                         }
-                        //Log.i("string to add is from black savex ", savex+"");
-                        //Log.i("string to add is from black savey ", savey+"");
-                        //Log.i("string to add is from black savedesx ", desx+"");
-                        //Log.i("string to add is from black savedesy ", desy+"");
+                        ////Log.i("string to add is from black savex ", savex+"");
+                        ////Log.i("string to add is from black savey ", savey+"");
+                        ////Log.i("string to add is from black savedesx ", desx+"");
+                        ////Log.i("string to add is from black savedesy ", desy+"");
                         String currentMove = savex + "" + savey + "" + desx + "" + desy;
-                        //Log.i("string to add is from black ", currentMove);
+                        ////Log.i("string to add is from black ", currentMove);
                         gameHistory.add(currentMove);
                         ImageView piece = getPieceAt(blackPieces, imgX, imgY);
                         piece.setX(imgDesX);
@@ -377,7 +373,7 @@ public class playGameActivity extends AppCompatActivity {
                 y = y * differenceY + startingY;
                 //y -=160;
                 y -= differenceY*2;
-                Log.i("xy xy", x + " "+ y + " " + destinationX + " "+ destinationY);
+                //Log.i("xy xy", x + " "+ y + " " + destinationX + " "+ destinationY);
 
                 destinationX = destinationX * differenceX + startingX;
                 destinationY = destinationY * differenceY + startingY;
@@ -426,12 +422,12 @@ public class playGameActivity extends AppCompatActivity {
             bp1.getLocationOnScreen(location);
             differenceY = location[1]-startingY;
 
-            Log.i("start x", startingX + " ");
-            Log.i("start y", startingY + " ");
+            //Log.i("start x", startingX + " ");
+            //Log.i("start y", startingY + " ");
 
-            Log.i("difference x", differenceX + " ");
-            Log.i("difference y", differenceY + " ");
-            //Log.i("imageViewxy", imageView.getX() + " "+ imageView.getY());
+            //Log.i("difference x", differenceX + " ");
+            //Log.i("difference y", differenceY + " ");
+            ////Log.i("imageViewxy", imageView.getX() + " "+ imageView.getY());
 
         }
     }
@@ -465,12 +461,12 @@ public class playGameActivity extends AppCompatActivity {
                 destinationY = y;
                 saveDestinationX = x;
                 saveDestinationY = y;
-                Log.i("destination x, y", destinationY +" " + destinationX);
+                //Log.i("destination x, y", destinationY +" " + destinationX);
                 destinationX = destinationX+1 %8;
                 destinationY = 8 - (destinationY % 8);
 
-                Log.i("current x, y", currentY +" " + currentX);
-                Log.i("destination x, y", destinationY +" " + destinationX);
+                //Log.i("current x, y", currentY +" " + currentX);
+                //Log.i("destination x, y", destinationY +" " + destinationX);
 
                 //returns 2 for castling
                 //return 4 for checkmate
@@ -481,7 +477,7 @@ public class playGameActivity extends AppCompatActivity {
                     disableAll(blackPieces);
 
                     int answer = chessGame.whiteMove(currentY, currentX, destinationY, destinationX);
-                    Log.i("answer is ", answer +" ");
+                    //Log.i("answer is ", answer +" ");
                     if(answer != -1){
                         String currentMove;
 
@@ -534,7 +530,7 @@ public class playGameActivity extends AppCompatActivity {
                     disableAll(whitePieces);
 
                     int answer = chessGame.blackMove(currentY, currentX, destinationY, destinationX);
-                    Log.i("answer is ", answer +" ");
+                    //Log.i("answer is ", answer +" ");
                     if(answer != -1){
                         //castling
                         if(answer == 2){
@@ -577,7 +573,7 @@ public class playGameActivity extends AppCompatActivity {
 
 
             }
-            System.out.println(gameHistory.toString());
+            //System.out.println(gameHistory.toString());
             return true;
         }
     };
@@ -595,7 +591,7 @@ public class playGameActivity extends AppCompatActivity {
 
     private ImageView getPieceAt(ImageView[] pieces, int x, int y){
         for(ImageView piece: pieces){
-            Log.i("piece xy ", " " + piece.getX() + " " + piece.getY() + piece.getContentDescription());
+            //Log.i("piece xy ", " " + piece.getX() + " " + piece.getY() + piece.getContentDescription());
             if(piece.getX() == x && piece.getY() == y){
 
                 return piece;
@@ -622,18 +618,18 @@ public class playGameActivity extends AppCompatActivity {
         castleRookY = chessGame.castleRookX;
         castleDestinationX = chessGame.castleDestinationY;
         castleDestinationY = chessGame.castleDestinationX;
-        Log.i("castle xy ", " " + castleRookX + castleRookY + castleDestinationX + castleDestinationY +" ");
+        //Log.i("castle xy ", " " + castleRookX + castleRookY + castleDestinationX + castleDestinationY +" ");
         castleRookX = castleRookX-1 % 8;
         castleRookY = (8 - (castleRookY % 8))%8;
         savex = castleRookX;
         savey = castleRookY;
-        Log.i("castle xy ", " " + castleRookX + castleRookY + castleDestinationX + castleDestinationY +" ");
+        //Log.i("castle xy ", " " + castleRookX + castleRookY + castleDestinationX + castleDestinationY +" ");
         castleRookX = castleRookX * differenceX + startingX;
         castleRookY = castleRookY * differenceY + startingY;
         //castleRookY -=160;
         castleRookY -= differenceY *2;
 
-        Log.i("castle image ", " " + castleRookX + " " + castleRookY);
+        //Log.i("castle image ", " " + castleRookX + " " + castleRookY);
         ImageView rook = getPieceAt(pieces, castleRookX, castleRookY);
         castleDestinationX = castleDestinationX-1 % 8;
         castleDestinationY = (8 - (castleDestinationY % 8))%8;

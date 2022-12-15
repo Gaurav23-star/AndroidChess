@@ -1,5 +1,6 @@
 package com.example.chessappplication;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 

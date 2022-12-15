@@ -156,19 +156,19 @@ public class replayChessActivity extends AppCompatActivity {
                 int y = Character.getNumericValue(currentMove.charAt(1));
                 int destinationX = Character.getNumericValue(currentMove.charAt(2));
                 int destinationY = Character.getNumericValue(currentMove.charAt(3));
-                Log.i("xy xy", x + " " + y + " " + destinationX + " " + destinationY);
+                //Log.i("xy xy", x + " " + y + " " + destinationX + " " + destinationY);
 
                 x = x * differenceX + startingX;
                 y = y * differenceY + startingY;
                 //y -=160;
                 y -= differenceY*2;
-                Log.i("xy xy", x + " "+ y + " " + destinationX + " "+ destinationY);
+                //Log.i("xy xy", x + " "+ y + " " + destinationX + " "+ destinationY);
 
                 destinationX = destinationX * differenceX + startingX;
                 destinationY = destinationY * differenceY + startingY;
                 //destinationY -= 160;
                 destinationY -= differenceY*2;
-                Log.i("xy xy", x + " " + y + " " + destinationX + " " + destinationY);
+                //Log.i("xy xy", x + " " + y + " " + destinationX + " " + destinationY);
                 ImageView piece;
                 if(whitesMove){
                     piece = getPieceAt(whitePieces, x, y);
@@ -206,18 +206,18 @@ public class replayChessActivity extends AppCompatActivity {
             bp1.getLocationOnScreen(location);
             differenceY = location[1]-startingY;
 
-            Log.i("start x", startingX + " ");
-            Log.i("start y", startingY + " ");
+            //Log.i("start x", startingX + " ");
+            //Log.i("start y", startingY + " ");
 
-            Log.i("difference x", differenceX + " ");
-            Log.i("difference y", differenceY + " ");
-            //Log.i("imageViewxy", imageView.getX() + " "+ imageView.getY());
+            //Log.i("difference x", differenceX + " ");
+            //Log.i("difference y", differenceY + " ");
+            ////Log.i("imageViewxy", imageView.getX() + " "+ imageView.getY());
 
         }
     }
     private ImageView getPieceAt(ImageView[] pieces, int x, int y){
         for(ImageView piece: pieces){
-            Log.i("piece xy ", " " + piece.getX() + " " + piece.getY() + piece.getContentDescription());
+            //Log.i("piece xy ", " " + piece.getX() + " " + piece.getY() + piece.getContentDescription());
             if(piece.getX() == x && piece.getY() == y){
                 return piece;
             }

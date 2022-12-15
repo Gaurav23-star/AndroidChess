@@ -72,9 +72,9 @@ public class Chess {
     public int whiteMove(int currentx, int currenty, int destinationx, int destinationy){
         lastCaputredPiece = null;
         lastMovedPiece = null;
-        System.out.println();
+        //System.out.println();
         //get the white player's move
-        System.out.print("White's move: ");
+        //System.out.print("White's move: ");
 
 
         if(drawOffered){
@@ -93,7 +93,7 @@ public class Chess {
        /*
         //check if player wants to resign
         if(input.equalsIgnoreCase("resign")){
-            System.out.println("Black wins");
+            //System.out.println("Black wins");
             whiteTurn = false;
             gameOn = false;
             return;
@@ -102,7 +102,7 @@ public class Chess {
         */
         //decode the move
 
-            //System.out.println("x y and x y" + currentX + currentY + " " + destinationY + destinationX);
+            ////System.out.println("x y and x y" + currentX + currentY + " " + destinationY + destinationX);
         currentX = currentx;
         currentY = currenty;
         destinationX = destinationx;
@@ -126,15 +126,15 @@ public class Chess {
                         //boolean checkmate = isCheckmate(board, blackPlayer);
                         if(isCheckmate(board, blackPlayer, whitePlayer)){
 
-                            printBoard(board);
-                            System.out.println();
-                            System.out.println("Checkmate");
-                            System.out.println("White wins");
+                            //printBoard(board);
+                            //System.out.println();
+                            //System.out.println("Checkmate");
+                            //System.out.println("White wins");
                             whiteTurn = false;
                             gameOn = false;
                             return 1;
                         }
-                        System.out.println("Check");
+                        //System.out.println("Check");
                     }
 
                     if(isMyKingInCheck){
@@ -142,17 +142,17 @@ public class Chess {
                     }
                     //if move is successfully, then print updated board and
                     // black player's turn is true, white's move is over
-                    printBoard(board);
+                    //printBoard(board);
                     whiteTurn = false;
                     blackTurn = true;
                     counter++;
                     return 2;
                 }else if(enpassantBlack == true && board[currentX][currentY].name.equalsIgnoreCase("wp")){
-                    //System.out.println("enpassant in white on");
-                    //System.out.println("black location is x and y " + enpassantBlackLocationX + enpassantBlackLocationY);
-                    //System.out.println("destination location x and y "+ destinationX + destinationY);
+                    ////System.out.println("enpassant in white on");
+                    ////System.out.println("black location is x and y " + enpassantBlackLocationX + enpassantBlackLocationY);
+                    ////System.out.println("destination location x and y "+ destinationX + destinationY);
                     if(enpassantBlackLocationX == destinationX && enpassantBlackLocationY == destinationY){
-                        //System.out.println("enpassant in white on");
+                        ////System.out.println("enpassant in white on");
                         movePiece(destinationX, destinationY,board[currentX][currentY], board, blackPlayer, kingIndex, whitePlayer);
 
                         int blackPawnX = destinationX -1;
@@ -160,7 +160,7 @@ public class Chess {
                         blackPlayer.remove(board[blackPawnX][blackPawnY]);
                         board[blackPawnX][blackPawnY] = null;
                     }
-                    printBoard(board);
+                    //printBoard(board);
                     whiteTurn = false;
                     blackTurn = true;
                     counter++;
@@ -168,10 +168,10 @@ public class Chess {
                     return 3;
                 }else if (isValidMove(destinationX, destinationY, board[currentX][currentY], board, whitePlayer, blackPlayer)) {
 
-                    //System.out.println("King's index " + kingIndex);
+                    ////System.out.println("King's index " + kingIndex);
                     if(kingIndex != -1){
                         if(movePiece(destinationX, destinationY, board[currentX][currentY], board, blackPlayer, kingIndex, whitePlayer)){
-                            //System.out.println("Piece is move");
+                            ////System.out.println("Piece is move");
                             kingIndex = getKingIndex(whitePlayer, true);
                             isMyKingInCheck = ((King)whitePlayer.get(kingIndex)).isKingInCheck;
                             //check for promotion
@@ -206,16 +206,16 @@ public class Chess {
                                 ((King)blackPlayer.get(oppositePlayersKingIndex)).isKingInCheck = true;
                                 //boolean checkmate = isCheckmate(board, blackPlayer);
                                 if(isCheckmate(board, blackPlayer, whitePlayer)){
-                                    printBoard(board);
-                                    System.out.println();
-                                    System.out.println("Checkmate");
-                                    System.out.println("White wins");
+                                    //printBoard(board);
+                                    //System.out.println();
+                                    //System.out.println("Checkmate");
+                                    //System.out.println("White wins");
                                     whiteTurn = false;
                                     gameOn = false;
                                     return 4;
                                 }
-                                System.out.println("Check");
-                                printBoard(board);
+                                //System.out.println("Check");
+                                //printBoard(board);
                                 whiteTurn = false;
                                 blackTurn = true;
                                 counter++;
@@ -230,7 +230,7 @@ public class Chess {
                             }
                             //if move is successfully, then print updated board and
                             // black player's turn is true, white's move is over
-                            printBoard(board);
+                            //printBoard(board);
                             whiteTurn = false;
                             blackTurn = true;
                             counter++;
@@ -238,7 +238,7 @@ public class Chess {
                             return 5;
                         }
                         else{
-                            System.out.println("Illegal move, try again");
+                            //System.out.println("Illegal move, try again");
                             counter++;
                             return -1;
 
@@ -247,13 +247,13 @@ public class Chess {
 
                 }
                 else{
-                    System.out.println("Illegal move, try again");
+                    //System.out.println("Illegal move, try again");
                     counter++;
                     return -1;
                 }
             }
             else{
-                System.out.println("Illegal move, try again");
+                //System.out.println("Illegal move, try again");
                 counter++;
                 return -1;
             }
@@ -264,8 +264,8 @@ public class Chess {
         lastCaputredPiece = null;
         lastMovedPiece = null;
                 //get the white player's move
-                System.out.println();
-                System.out.print("Black's move: ");
+                //System.out.println();
+                //System.out.print("Black's move: ");
 
                 /*
                 if(drawOffered){
@@ -282,7 +282,7 @@ public class Chess {
 
         /*
                 if(input.equalsIgnoreCase("resign")){
-                    System.out.println("White wins");
+                    //System.out.println("White wins");
                     blackTurn = false;
                     gameOn = false;
                     return;
@@ -294,7 +294,7 @@ public class Chess {
         currentY = currenty;
         destinationX = destinationx;
         destinationY = destinationy;
-                    //System.out.println("x y and x y" + currentX + currentY + " " + destinationY + destinationX);
+                    ////System.out.println("x y and x y" + currentX + currentY + " " + destinationY + destinationX);
                     if(board[currentX][currentY] != null && !board[currentX][currentY].isWhite){
                         int kingIndex = getKingIndex(blackPlayer, false);
                         boolean isMyKingInCheck = ((King)blackPlayer.get(kingIndex)).isKingInCheck;
@@ -309,28 +309,28 @@ public class Chess {
                                 ((King)whitePlayer.get(oppositePlayersKingIndex)).isKingInCheck = true;
                                 if(isCheckmate(board, whitePlayer, blackPlayer)){
 
-                                    printBoard(board);
-                                    System.out.println();
-                                    System.out.println("Checkmate");
-                                    System.out.println("Black Wins");
+                                    //printBoard(board);
+                                    //System.out.println();
+                                    //System.out.println("Checkmate");
+                                    //System.out.println("Black Wins");
                                     blackTurn = false;
                                     gameOn = false;
                                     return 1;
                                 }
-                                System.out.println("Check");
+                                //System.out.println("Check");
                             }
                             if(isMyKingInCheck){
                                 ((King)blackPlayer.get(kingIndex)).isKingInCheck = false;
                             }
                             //if move is successfully, then print updated board and
                             // black player's turn is true, white's move is over
-                            printBoard(board);
+                            //printBoard(board);
                             whiteTurn = true;
                             blackTurn = false;
                             counter++;
                             return 2;
                         }else if(enpassantWhite == true && board[currentX][currentY].name.equalsIgnoreCase("bp")){
-                            //System.out.println("enpassant in black on");
+                            ////System.out.println("enpassant in black on");
                             if(enpassantWhiteLocationX == destinationX && enpassantWhiteLocationY == destinationY){
                                 movePiece(destinationX, destinationY, board[currentX][currentY], board, whitePlayer, kingIndex, blackPlayer);
 
@@ -339,7 +339,7 @@ public class Chess {
                                 whitePlayer.remove(board[whitePawnX][whitePawnY]);
                                 board[whitePawnX][whitePawnY] = null;
                             }
-                            printBoard(board);
+                            //printBoard(board);
                             whiteTurn = true;
                             blackTurn = false;
                             counter++;
@@ -349,7 +349,7 @@ public class Chess {
                         else if (isValidMove(destinationX, destinationY, board[currentX][currentY], board, blackPlayer, whitePlayer)) {
 
                             //check if the move would put the player's king under check
-                            //System.out.println("King's index " + kingIndex);
+                            ////System.out.println("King's index " + kingIndex);
                             if(kingIndex != -1){
                                 if(movePiece(destinationX, destinationY, board[currentX][currentY], board, whitePlayer, kingIndex, blackPlayer)){
                                     kingIndex = getKingIndex(blackPlayer, false);
@@ -384,16 +384,16 @@ public class Chess {
                                     if(isOppositePlayersInCheck){
                                         ((King)whitePlayer.get(oppositePlayersKingIndex)).isKingInCheck = true;
                                         if(isCheckmate(board, whitePlayer, blackPlayer)){
-                                            printBoard(board);
-                                            System.out.println();
-                                            System.out.println("Checkmate");
-                                            System.out.println("Black wins");
+                                            //printBoard(board);
+                                            //System.out.println();
+                                            //System.out.println("Checkmate");
+                                            //System.out.println("Black wins");
                                             blackTurn = false;
                                             gameOn = false;
                                             return 4;
                                         }
-                                        System.out.println("Check");
-                                        printBoard(board);
+                                        //System.out.println("Check");
+                                        //printBoard(board);
                                         whiteTurn = true;
                                         blackTurn = false;
                                         counter++;
@@ -405,7 +405,7 @@ public class Chess {
                                     }
                                     //if move is successfully, then print updated board and
                                     // black player's turn is true, white's move is over
-                                    printBoard(board);
+                                    //printBoard(board);
                                     whiteTurn = true;
                                     blackTurn = false;
                                     counter++;
@@ -413,21 +413,21 @@ public class Chess {
                                     return 5;
                                 }
                                 else{
-                                    System.out.println("Illegal move, try again");
+                                    //System.out.println("Illegal move, try again");
                                     counter++;
                                     return -1;
                                 }
                             }
                         }
                         else{
-                            System.out.println("Illegal move, try again");
+                            //System.out.println("Illegal move, try again");
                             counter++;
                             return -1;
                         }
                     }
                     //if illegal move, then continue asking for white's move
                     else {
-                        System.out.println("Illegal move, try again");
+                        //System.out.println("Illegal move, try again");
                         counter++;
                         return -1;
                     }
@@ -652,7 +652,7 @@ public class Chess {
      * @param board
      */
     public void printBoard(Piece[][] board) {
-        System.out.println();
+        //System.out.println();
         for (int i = 8; i > 0; i--) {
             for (int j = 1; j < board[1].length; j++) {
                 if (i % 2 == 0 && j % 2 == 0 && board[i][j] == null) {
@@ -666,13 +666,13 @@ public class Chess {
                 }
             }
             System.out.print(i);
-            System.out.println();
+            //System.out.println();
         }
         char arr[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
         for (int i = 0; i < 8; i++) {
             System.out.print(" " + arr[i] + " ");
         }
-        System.out.println();
+        //System.out.println();
     }
 
 
@@ -680,7 +680,7 @@ public class Chess {
     //will be removed in final code
     /*
        public static void (Piece[][] board){
-           System.out.println();
+           //System.out.println();
            for (int i = 8; i > 0; i--) {
                for (int j = 1; j < board[1].length; j++) {
                    if(board[i][j] == null){
@@ -691,13 +691,13 @@ public class Chess {
                                                                                    
                }
                System.out.print(i);
-               System.out.println();
+               //System.out.println();
            }
            char arr[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
            for (int i = 0; i < 8; i++) {
                System.out.print(" " + arr[i] + "   ");
            }
-           System.out.println();
+           //System.out.println();
                                                                                    
                                                                                    
        }
@@ -718,11 +718,11 @@ public class Chess {
      */
     // controller method to make final decision on whether input move is legal or not...
     public boolean isValidMove(int x, int y, Piece currentPiece, Piece[][] board, ArrayList<Piece> currentPlayer, ArrayList<Piece> oppositePlayer) {
-        //System.out.println(currentPiece.name);
-        //System.out.println(board[x][y].name);
+        ////System.out.println(currentPiece.name);
+        ////System.out.println(board[x][y].name);
 
         boolean initialFlag =  currentPiece.isInputMoveValid(x, y, board);
-        //System.out.println("ini flag of " + currentPiece.name + initialFlag);
+        ////System.out.println("ini flag of " + currentPiece.name + initialFlag);
         if (initialFlag){
             return true;
         }
@@ -744,14 +744,14 @@ public class Chess {
             //king is trying to castle
             if(currentPiece.isWhite && currentPiece.name.equalsIgnoreCase("wk") && Math.abs(y - currentPiece.yPosition) == 2 && x == currentPiece.xPosition){
                 if( ((King)currentPiece).isKingInCheck == false){
-                    //System.out.println("castle white player");
+                    ////System.out.println("castle white player");
                     return true;
                 }
 
 
             }else if( !currentPiece.isWhite && currentPiece.name.equalsIgnoreCase("bk") && Math.abs(y - currentPiece.yPosition) == 2 && x == currentPiece.xPosition){
                 if( ((King)currentPiece).isKingInCheck == false){
-                    //System.out.println("castle black player");
+                    ////System.out.println("castle black player");
                     return true;
                 }
             }
@@ -773,8 +773,8 @@ public class Chess {
      */
     //if move is validated, them move the pieces
     public boolean movePiece(int x, int y, Piece currentPiece, Piece[][] board, ArrayList<Piece> oppositePlayerPieces, int kingIndex, ArrayList<Piece> currentPlayer){
-        //System.out.println("x is " + x + "y is " + y);
-        //System.out.println(currentPiece);
+        ////System.out.println("x is " + x + "y is " + y);
+        ////System.out.println(currentPiece);
         int currentX = currentPiece.xPosition;
         int currentY = currentPiece.yPosition;
         Piece captured = board[x][y];
@@ -792,9 +792,9 @@ public class Chess {
 
             //check for if move would put king under attack
             //if yes, then reverse last move and return false
-            //System.out.println("King index is and color" + currentPlayer.get(kingIndex) + currentPiece.isWhite);
+            ////System.out.println("King index is and color" + currentPlayer.get(kingIndex) + currentPiece.isWhite);
             if(isCheck(oppositePlayerPieces, currentPlayer.get(kingIndex), board, currentPlayer)){
-                //System.out.println("reverserig move 1");
+                ////System.out.println("reverserig move 1");
                 oppositePlayerPieces.add(captured);
                 board[x][y] = captured;
                 board[currentX][currentY] = currentPiece;
@@ -813,12 +813,12 @@ public class Chess {
             currentPiece.setXPosition(x);
             currentPiece.setYPosition(y);
             board[currentX][currentY] = null;
-            //System.out.println("King index is and color" + currentPlayer.get(kingIndex) + currentPiece.isWhite);
+            ////System.out.println("King index is and color" + currentPlayer.get(kingIndex) + currentPiece.isWhite);
 
             //check for if move would put king under attack
             //if yes, then reverse last move and return false
             if(isCheck(oppositePlayerPieces, currentPlayer.get(kingIndex), board, currentPlayer)){
-                //System.out.println("reverserig move 2");
+                ////System.out.println("reverserig move 2");
                 board[x][y] = captured;
                 board[currentX][currentY] = currentPiece;
                 currentPiece.setXPosition(currentX);
@@ -847,13 +847,13 @@ public class Chess {
     public boolean isCheck(ArrayList<Piece> OppositeplayerPieces, Piece king, Piece[][] board, ArrayList<Piece> currentPlayer){
         int kingX = king.xPosition;
         int kingY = king.yPosition;
-        //System.out.println("King x and y " + kingX + kingY);
+        ////System.out.println("King x and y " + kingX + kingY);
         for(Piece pieces : OppositeplayerPieces){
-            //System.out.println(pieces.name);
-            //System.out.println("attacking piece name" + pieces.name + pieces.xPosition + pieces.yPosition );
+            ////System.out.println(pieces.name);
+            ////System.out.println("attacking piece name" + pieces.name + pieces.xPosition + pieces.yPosition );
             if(isValidMove(kingX, kingY, pieces, board, currentPlayer, OppositeplayerPieces)){
-                //System.out.println("King x and y is " + kingX + kingY);
-                //System.out.println("attacking piece name" + pieces.name + pieces.xPosition + pieces.yPosition);
+                ////System.out.println("King x and y is " + kingX + kingY);
+                ////System.out.println("attacking piece name" + pieces.name + pieces.xPosition + pieces.yPosition);
                 return true;
             }
         }
@@ -929,7 +929,7 @@ public class Chess {
 
 
         int kingIndex = getKingIndex(currentPlayer, currentPlayer.get(0).isWhite);
-        //System.out.println("King index " + kingIndex);
+        ////System.out.println("King index " + kingIndex);
 
 
 
@@ -937,13 +937,13 @@ public class Chess {
             for(int i = 1; i < tempBoard.length; i++){
                 for(int j = 1; j < tempBoard.length; j++){
                     if(isValidMove(i, j , pieces, tempBoard, currentPlayer, oppositePlayer)){
-                        //System.out.println("from outer i is " + i + "j is " + j + "piece name is " + pieces.name);
+                        ////System.out.println("from outer i is " + i + "j is " + j + "piece name is " + pieces.name);
                         int x = pieces.xPosition;
                         int y = pieces.yPosition;
                         if(movePiece(i, j, pieces, tempBoard, oppositePlayer, kingIndex, currentPlayer)){
                             pieces.xPosition = x;
                             pieces.yPosition = y;
-                            //System.out.println("i is " + i + "j is " + j + "piece name is " + pieces.name);
+                            ////System.out.println("i is " + i + "j is " + j + "piece name is " + pieces.name);
                             return false;
                         }
                     }
@@ -1006,9 +1006,9 @@ public class Chess {
             }
             //king wants to castle to right
             else{
-                //System.out.println("black king castle left");
+                ////System.out.println("black king castle left");
                 for(Piece piece : currentPlayer){
-                    //System.out.println(piece.name);
+                    ////System.out.println(piece.name);
                     if(piece.xPosition == kingX && piece.yPosition < kingY && piece.name.equalsIgnoreCase("br")){
                         rookX = piece.xPosition;
                         rookY = piece.yPosition;
@@ -1017,7 +1017,7 @@ public class Chess {
             }
 
         }
-        //System.out.println("rook x and y is " + rookX + rookY);
+        ////System.out.println("rook x and y is " + rookX + rookY);
         //there is no rook of same color
         if(rookX == 0){
             return false;
@@ -1030,10 +1030,10 @@ public class Chess {
 
         //check if the path between king and rook is clear
         boolean isPathClear = isValidMove(kingX, kingY, board[rookX][rookY],board, currentPlayer,oppositePlayer);
-        //System.out.println(isPathClear);
+        ////System.out.println(isPathClear);
 
         int middleSquare = (y + kingY) / 2;
-        //System.out.println("Middle is " + middleSquare);
+        ////System.out.println("Middle is " + middleSquare);
         //check if the square between the move is attacked by enemy
         if(isPathClear){
             for(Piece piece : oppositePlayer){
@@ -1042,7 +1042,7 @@ public class Chess {
                 }
             }
         }
-        //System.out.println("current piece here is " + currentKing.name);
+        ////System.out.println("current piece here is " + currentKing.name);
 
         if(movePiece(x, y, currentKing, board, oppositePlayer, getKingIndex(currentPlayer, currentKing.isWhite), currentPlayer)){
             int currentRookX, currentRookY;
@@ -1085,11 +1085,11 @@ public class Chess {
                     castleDestinationY = y+1;
                 }
             }
-            System.out.println("rook x and y is " + rookX + rookY);
+            //System.out.println("rook x and y is " + rookX + rookY);
             castleRookX = rookX;
             castleRookY = rookY;
             castleDestinationX = x;
-            System.out.println("rook current x and y is " + currentRookX + currentRookY);
+            //System.out.println("rook current x and y is " + currentRookX + currentRookY);
             return true;
         }
         else{
@@ -1106,11 +1106,11 @@ public class Chess {
         int currentY = lastMovedPiece.yPosition;
         lastMovedPiece.setXPosition(lastMovedPieceX);
         lastMovedPiece.setYPosition(lastMovedPieceY);
-        System.out.println("current x is " + currentX);
-        System.out.println("current y is " + currentY);
-        System.out.println("last x is " + lastMovedPieceX);
-        System.out.println("last y is " + lastMovedPieceY);
-        System.out.println("last moved piece " + lastMovedPiece.name);
+        //System.out.println("current x is " + currentX);
+        //System.out.println("current y is " + currentY);
+        //System.out.println("last x is " + lastMovedPieceX);
+        //System.out.println("last y is " + lastMovedPieceY);
+        //System.out.println("last moved piece " + lastMovedPiece.name);
         board[lastMovedPieceX][lastMovedPieceY] = lastMovedPiece;
         board[currentX][currentY] = null;
 
@@ -1124,7 +1124,7 @@ public class Chess {
                 board[currentX][currentY] = lastCaputredPiece;
             }
         }
-        printBoard(board);
+        //printBoard(board);
 
     }
 
@@ -1157,24 +1157,24 @@ public class Chess {
                         if(board[i][j] != null && board[i][j].isWhite != currentPlayerColor){
                             possibleMove = "" + prevX + "" +prevY + "" + i + "" + j;
                             possibleMoves.add(possibleMove);
-                            System.out.println("prev position is " + prevX + "  " +prevY);
-                            System.out.println("random move is " + pieces.name + "  " + i + j);
+                            //System.out.println("prev position is " + prevX + "  " +prevY);
+                            //System.out.println("random move is " + pieces.name + "  " + i + j);
                         }
                         else if(board[i][j] == null){
                             possibleMove = "" + prevX + "" +prevY + "" + i + "" + j;
                             possibleMoves.add(possibleMove);
-                            System.out.println("prev position is " + prevX + "  " +prevY);
-                            System.out.println("random move is " + pieces.name + "  " + i + j);
+                            //System.out.println("prev position is " + prevX + "  " +prevY);
+                            //System.out.println("random move is " + pieces.name + "  " + i + j);
 
                         }
 
-                        ////System.out.println("from outer i is " + i + "j is " + j + "piece name is " + pieces.name);
+                        //////System.out.println("from outer i is " + i + "j is " + j + "piece name is " + pieces.name);
                         //int x = pieces.xPosition;
                         //int y = pieces.yPosition;
                         //if(movePiece(i, j, pieces, tempBoard, oppositePlayer, kingIndex, currentPlayer)){
                         //    pieces.xPosition = x;
                         //    pieces.yPosition = y;
-                        //    //System.out.println("i is " + i + "j is " + j + "piece name is " + pieces.name);
+                        //    ////System.out.println("i is " + i + "j is " + j + "piece name is " + pieces.name);
 
                         }
                     }
